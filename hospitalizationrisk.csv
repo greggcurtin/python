@@ -1,0 +1,39 @@
+Drug,Rate
+Insulins,0.18
+Combination hypoglycemic agents,0.39
+High-ceiling diuretics,0.68
+Low-ceiling diuretics,0.16
+Potassium-sparing agents,0.2
+Combination Diuretics,0.86
+COX-2 selective NSAIDs,0.43
+Non-selective NSAIDs,0.92
+Combination NSAIDs,2.31
+ACEIs/ARBs/Renin inhibitors,0.06
+CCBs antihypertensives,0.18
+B-blockers antihypertensives,0.38
+B-blockers antihypertensives,0.35
+Other antihypertensives,0.19
+Combination antihypertensives,0.3
+Cardiac glycosides,0.12
+"Antiarrhythmics, Classes I and III",0.6
+combination antiarrhythmics,0.17
+New generation anticonvulsants,0.19
+Old generation anticonvulsants,0.64
+Combination anticonvulsants,0.34
+Atypical antipsychotics,0.41
+Typical antipsychotics,0.85
+Lithium antipsychotics,1.13
+combination antipsychoitcs,1.22
+SSRIs antidepressants,0.16
+SNRIs antidepressants,0.56
+SARIs antidepressants,0.31
+Tricyclics/Tetracyclics,0.38
+Other antidepressants,0.48
+combination antidepressants,0.64
+Z-hypnotics,0.26
+Short-acting BZDs,0.45
+Long-acting BZDs,0.52
+combination BZD/Z-hypnotics,1.08
+Weak narcotics,0.4
+Strong narcotics,1.57
+combination narcotics,2.27

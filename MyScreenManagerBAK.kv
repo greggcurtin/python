@@ -1,0 +1,754 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
+<MyScreenManager>:
+    BRANCH:
+        name: 'branch'
+    MAINGRID:
+        name: 'screen1'
+    INPUTDATA:
+        name: 'screen2'
+    INJURY:
+        id: INJURY
+        name: 'injury'
+    CANCER:
+        id: CANCER
+        name: 'cancer'
+    DISEASE:
+        name: 'disease'
+    FINAL_SCREEN:
+        id: final
+        name: 'final_screen'
+
+
+<BRANCH>
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        ScreenManager:
+            size_hint: 1, .9
+            id: _screen_manager
+            Screen:
+                name: 'screen1'
+                Label:
+                    markup: True
+                    text: '[size=24]Welcome to [color=dd88ff]HOOFBEATS[/color][/size]'
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        Button:
+            text: 'Home'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'branch'
+        Button:
+            text: 'Continue'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'screen2'
+
+<MAINGRID>:
+    GridLayout:
+        anchor_y: 'center'
+        cols: 3
+        padding: 50
+        Button:
+            text: "Injury"
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'injury'
+
+        Button:
+            text: "Disease"
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'disease'
+        Button:
+            text: "Cause of Death"
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'death'
+        Button:
+            text: "Pharmaceuticals"
+        Button:
+            text: "Medical Procedures"
+        Button:
+            text: "Cancer"
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'cancer'
+
+        Button:
+            text: "Finance"
+        Button:
+            #text: "Disaster"
+            text: "Test"
+            on_release:
+                root.manager.transition.direction = 'left'
+                #root.manager.current = 'final_screen'
+                root.manager.current = 'final_screen'
+        Button:
+            text: "Disease"
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'disease'
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        Button:
+            text: 'Home'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'branch'
+
+<INPUTDATA>:
+    age_input: age_input
+    state_spinner: state_spinner
+    box_male: box_male
+    box_female: box_female
+
+    CustomWidget:
+        size_hint: [.5,.5]
+        Label:
+            text: "State:"
+            halign: 'left'
+            pos: 10,500
+            size: 100, 30
+        Spinner:
+            id: state_spinner
+            size: 100, 30
+            pos: 200, 500
+            text: 'Select'
+            values: root.display_state()
+        Label:
+            text: "Year Born:"
+            halign: 'left'
+            pos: 10,400
+            size: 100, 30
+        TextInput:
+            multiline: False
+            input_type: 'number'
+            id: age_input
+            pos: 200,400
+            size: 100, 30
+
+        GridLayout:
+            cols: 3
+            row_force_default: True
+            row_default_height: 50
+            pos_hint: {'center_x':0, 'center_y':.8}
+            size_hint: (None, .3)
+            # size is updated whenever minimum_size is.
+            size: self.minimum_size
+            # top is updated whenever height is.
+            top: self.height + 180
+            Label:
+                text: "Gender:"
+                size_hint_x: None
+                width: 150
+                halign: 'left'
+            Label:
+                text: 'Male'
+                size_hint_x: None
+                width: 100
+                halign: 'left'
+            CheckBox:
+                id: box_male
+                active: True
+                color: .294, .761, .623
+                group: 'g2'
+                size_hint_x: None
+                width: 50
+            Label:
+                text: ''
+                size_hint_x: None
+                width: 150
+            Label:
+                text: 'Female'
+                size_hint_x: None
+                width: 100
+                halign: 'left'
+            CheckBox:
+                id: box_female
+                active: True
+                color: .294, .761, .623
+                group: 'g2'
+                size_hint_x: None
+                width: 50
+            Label:
+                text: ''
+                size_hint_x: None
+                width: 150
+            Label:
+                text: 'Other'
+                size_hint_x: None
+                width: 100
+                halign: 'left'
+            CheckBox:
+                id: box_other
+                active: True
+                color: .294, .761, .623
+                group: 'g2'
+                size_hint_x: None
+                width: 50
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        Button:
+            text: 'Home'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'branch'
+        Button:
+            text: 'Continue'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'screen1'
+            #on_press: root.send_data()
+            on_press: root.send_data()
+
+
+<DISEASE>:
+
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: [.05, .05, .05, .05]
+        Label:
+            size_hint: .9, .1
+            font_size: 22
+            text: 'Risk of Disease (Death)'
+            color: 1, 1, 1, 1
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        Button:
+            text: 'Grid'
+            on_release:
+                root.manager.current = 'screen1'
+
+<INJURY>:
+
+    choking: choking
+    falls: falls
+    motor: motor
+    poison: poison
+
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: [.05, .05, .05, .05]
+        Label:
+            size_hint: .9, .1
+            font_size: 22
+            text: 'Risk of Injury (Death)'
+            color: 1, 1, 1, 1
+
+    #BoxLayout:
+        #orientation: 'vertical'
+        #anchor_y: 'top'
+        #spacing: .01
+        #size_hint: 1, .6
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+        size_hint: (1,.9)
+
+        BoxLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            orientation: 'vertical'
+            size_hint: 1, .75
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: .01
+                size_hint: .9, .1
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Motor Vehicle: {}%'.format(motor.value)
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: motor
+                    size_hint_x: .9
+                    height: '48dp'
+                    value: 0.0124
+                    max: 1
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: .01
+                size_hint: .9, .1
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Firearm: {}%'.format(float(firearm.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: firearm
+                    size_hint_x: .9
+                    height: '48dp'
+                    value: 0.0118
+                    max: 1
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: .01
+                size_hint: .9, .1
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Poison/Overdose: {}%'.format(float(poison.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: poison
+                    size_hint_x: .9
+                    height: '48dp'
+                    value: 0.0199
+                    max: 1
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: .01
+                size_hint: .9, .1
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Falls: {}%'.format(float(falls.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: falls
+                    size_hint_x: .9
+                    height: '48dp'
+                    value: 0.0112
+                    max: 1
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: .01
+                size_hint: .9, .1
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Occupation: {}%'.format(float(occ.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: occ
+                    size_hint_x: .9
+                    height: '48dp'
+                    value: 0.0035
+                    max: 1
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: .01
+                size_hint: .9, .1
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Choking: {}%'.format(choking.value)
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: choking
+                    size_hint_x: .9
+                    height: '48dp'
+                    value: 0.0016
+                    max: 1
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: .01
+                size_hint: .9, .1
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Fire/Smoke: {}%'.format(float(fire.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: fire
+                    size_hint_x: .9
+                    height: '48dp'
+                    value: 0.00112
+                    max: 1
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: .01
+                size_hint: .9, .1
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Drowning: {}%'.format(float(drown.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: drown
+                    size_hint_x: .9
+                    height: '48dp'
+                    value: 0.00114
+                    max: 1
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: .01
+                size_hint: .9, .1
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Heat/Cold: {}%'.format(float(heat.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: heat
+                    size_hint_x: .9
+                    height: '48dp'
+                    value: 0.00039
+                    max: 1
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: .01
+                size_hint: .9, .1
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Blunt Force: {}%'.format(float(falls.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: blunt
+                    size_hint_x: .9
+                    height: '48dp'
+                    value: 0.000176
+                    max: 1
+
+
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        ToggleButton:
+            text: 'Average'
+            id: injuryavg
+            group: 'injury'
+            state: 'normal'
+            on_press: root.default();
+        ToggleButton:
+            text: 'Me'
+            id: injurycustom
+            group: 'injury'
+            on_press: root.update();
+        Button:
+            text: 'Grid'
+            on_release:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'screen1'
+                #on_press: root.clear_val()
+
+<CANCER>:
+    title: title
+    on_pre_enter:
+        root.version = 0;
+        root.customflag = 0;
+        MyWidget.update(root.version, root.customflag);
+
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: [.05, .05, .05, .05]
+        Label:
+            id:title
+            size_hint: .9, .1
+            font_size: 22
+            text: 'Risk of Cancer (Death)'
+            color: 1, 1, 1, 1
+
+    MyWidget:
+        self:self
+        pb: pb
+        lb: lb
+        pb1: pb1
+        lb1: lb1
+        pb1: pb1
+        lb1: lb1
+        pb2: pb2
+        lb2: lb2
+        pb3: pb3
+        lb3: lb3
+        pb4: pb4
+        lb4: lb4
+        pb5: pb5
+        lb5: lb5
+        pb6: pb6
+        lb6: lb6
+        pb7: pb7
+        lb7: lb7
+        pb8: pb8
+        lb8: lb8
+        pb9: pb9
+        lb9: lb9
+        pb10: pb10
+        lb10: lb10
+        pb11: pb11
+        lb11: lb11
+        pb12: pb12
+        lb12: lb12
+        pb13: pb13
+        lb13: lb13
+        pb14: pb14
+        lb14: lb14
+        pb15: pb15
+        lb15: lb15
+        pb16: pb16
+        lb16: lb16
+
+        id: MyWidget
+        size_hint: (1,.9)
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            size: self.size
+
+            BoxLayout:
+                anchor_x: 'center'
+                anchor_y: 'center'
+                orientation: 'vertical'
+                size_hint: 1, .85
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: .01
+                    size_hint: .9, .1
+
+                    GridLayout:
+                        orientation: 'vertical'
+                        cols: 2
+    #######manual entry#############
+                        CustLabel:
+                            id: lb
+                        CustPBar:
+                            id: pb
+                        CustLabel:
+                            id: lb1
+                        CustPBar:
+                            id: pb1
+                        CustLabel:
+                            id: lb2
+                        CustPBar:
+                            id: pb2
+                        CustLabel:
+                            id:lb3
+                        CustPBar:
+                            id: pb3
+                        CustLabel:
+                            id: lb4
+                        CustPBar:
+                            id: pb4
+                        CustLabel:
+                            id:lb5
+                        CustPBar:
+                            id: pb5
+                        CustLabel:
+                            id: lb6
+                        CustPBar:
+                            id: pb6
+                        CustLabel:
+                            id:lb7
+                        CustPBar:
+                            id:pb7
+                        CustLabel:
+                            id:lb8
+                        CustPBar:
+                            id:pb8
+                        CustLabel:
+                            id:lb9
+                        CustPBar:
+                            id:pb9
+                        CustLabel:
+                            id:lb10
+                        CustPBar:
+                            id:pb10
+                        CustLabel:
+                            id:lb11
+                        CustPBar:
+                            id:pb11
+                        CustLabel:
+                            id:lb12
+                        CustPBar:
+                            id:pb12
+                        CustLabel:
+                            id:lb13
+                        CustPBar:
+                            id:pb13
+                        CustLabel:
+                            id:lb14
+                        CustPBar:
+                            id:pb14
+                        CustLabel:
+                            id:lb15
+                        CustPBar:
+                            id:pb15
+                        CustLabel:
+                            id:lb16
+                        CustPBar:
+                            id:pb16
+
+###########################################################
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        ToggleButton:
+            id: canceravg
+            text: 'Average'
+            group: 'cancercalc'
+            state: 'down'
+            allow_no_selection: False
+            on_press:
+                root.customflag = 0;
+                MyWidget.update(root.version, root.customflag);
+
+
+
+        ToggleButton:
+            id: cancercalc
+            text: 'Custom'
+            group: 'cancercalc'
+            state: 'normal'
+            allow_no_selection: False
+            on_press:
+                root.customflag = 1;
+                MyWidget.update(root.version, root.customflag);
+
+
+        ToggleButton:
+            id: cancerdeath
+            text: 'Death'
+            group: 'cancervers'
+            state: 'down'
+            allow_no_selection: False
+            on_press:
+                root.version = 0;
+                MyWidget.update(root.version, root.customflag);
+                root.title.text = "Risk of Cancer (Death)"
+
+        ToggleButton:
+            id: cancerdiag
+            text: 'Diagnosis'
+            group: 'cancervers'
+            state: 'normal'
+            allow_no_selection: False
+            on_press:
+                root.version = 1;
+                MyWidget.update(root.version, root.customflag);
+                root.title.text = "Risk of Cancer (Diagnosis)"
+                # pb.value = round(root.cancer_list2[1][0]*100,8);
+                # pb1.value = round(root.cancer_list2[1][1]*100,8);
+                # pb2.value = round(root.cancer_list2[1][2] * 100, 8);
+                # pb3.value = round(root.cancer_list2[1][3]*100,8);
+                # pb4.value = round(root.cancer_list2[1][4]*100,8);
+                # pb5.value = round(root.cancer_list2[1][5]*100,8);
+                # pb6.value = round(root.cancer_list2[1][6]*100,8);
+                # pb7.value = round(root.cancer_list2[1][7]*100,8);
+                # pb8.value = round(root.cancer_list2[1][8] * 100, 8);
+                # pb9.value = round(root.cancer_list2[1][9]*100,8);
+                # pb10.value = round(root.cancer_list2[1][10]*100,8);
+                # pb11.value = round(root.cancer_list2[1][11]*100,8);
+                # lb.text = '{}: {}%'.format(root.cancer_list2[0][0], float(pb.value));
+                # lb1.text = '{}: {}%'.format(root.cancer_list2[0][1], float(pb1.value));
+                # lb2.text = '{}: {}%'.format(root.cancer_list2[0][2], float(pb2.value));
+                # lb3.text = '{}: {}%'.format(root.cancer_list2[0][3], float(pb3.value));
+                # lb4.text = '{}: {}%'.format(root.cancer_list2[0][4], float(pb4.value));
+                # lb5.text = '{}: {}%'.format(root.cancer_list2[0][5], float(pb5.value));
+                # lb6.text = '{}: {}%'.format(root.cancer_list2[0][6], float(pb6.value));
+                # lb7.text = '{}: {}%'.format(root.cancer_list2[0][7], float(pb7.value));
+                # lb8.text = '{}: {}%'.format(root.cancer_list2[0][8], float(pb8.value));
+                # lb9.text = '{}: {}%'.format(root.cancer_list2[0][9], float(pb9.value));
+                # lb10.text = '{}: {}%'.format(root.cancer_list2[0][10], float(pb10.value));
+                # lb11.text = '{}: {}%'.format(root.cancer_list2[0][11], float(pb11.value));
+        Button:
+            text: 'Grid'
+            on_release:
+                root.manager.current = 'screen1'
+
+
+
+##################################
+<CustLabel@Label>
+    size: self.texture_size
+    font_size: 12
+    color: 1,1,1,1
+
+<CustPBar@ProgressBar>
+    size_hint_x: .9
+    height: '48dp'
+    max: 100
+
+
+<FINAL_SCREEN>:
+    MyWidget:
+        lb: lb
+        pb: pb
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            size: self.size
+
+
+            BoxLayout:
+                anchor_x: 'center'
+                anchor_y: 'center'
+                orientation: 'vertical'
+                size_hint: 1, .85
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: .01
+                    size_hint: .9, .1
+
+                    CustLabel:
+                        id: lb
+                        text: '{}: {}%'.format("Test", float(pb.value))
+
+                    CustPBar:
+                        id: pb
+                        value: 50
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        Button:
+            text: 'Default'
+            on_release:
+                on_press: root.default(); pb.value = root.pbval;
+                #on_press: root.calculate()
+        Button:
+            text: 'Calculate'
+            on_release:
+                on_press: root.update(); pb.value = root.pbval;
+                #on_press: root.calculate()
+        Button:
+            text: 'Back'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'screen1'
+                #on_press: root.clear_val()
+        ToggleButton:
+            id: toggle
+            text: 'Death'
+            group: 'version'
+            state: 'normal'
+            on_press: root.update(); pb.value = root.pbval;
+        ToggleButton:
+            id: toggle2
+            text: 'Diagnosis'
+            group: 'version'
+            state: 'down'
+            on_press: root.default(); pb.value = root.pbval;
+            #on_release:
+                #root.manager.transition.direction = 'right'
+                #root.manager.current = 'screen1'
+                #on_press: root.clear_val()
+

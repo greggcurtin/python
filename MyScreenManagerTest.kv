@@ -1,0 +1,1913 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
+<MyScreenManager>:
+    BRANCH:
+        name: 'branch'
+    MAINGRID:
+        name: 'screen1'
+    INPUTDATA:
+        name: 'screen2'
+    INJURY:
+        id: INJURY
+        name: 'injury'
+    CANCER:
+        id: CANCER
+        name: 'cancer'
+    DISEASE:
+        name: 'disease'
+    NCD:
+        name: 'ncd'
+    COD:
+        id: COD
+        name: 'cod'
+    DRUGS:
+        id: DRUGS
+        name: 'drugs'
+    FINAL_SCREEN:
+        id: final
+        name: 'final_screen'
+
+
+<BRANCH>
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        ScreenManager:
+            size_hint: 1, .9
+            id: _screen_manager
+            Screen:
+                name: 'screen1'
+                Label:
+                    markup: True
+                    text: '[size=24]Welcome to [color=dd88ff]HOOFBEATS[/color][/size]'
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        Button:
+            text: 'Home'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'branch'
+        Button:
+            text: 'Continue'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'screen2'
+
+<MAINGRID>:
+    GridLayout:
+        anchor_y: 'center'
+        cols: 3
+        padding: 50
+        Button:
+            text: "Injury"
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'injury'
+
+        Button:
+            text: "Infectious Disease"
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'disease'
+        Button:
+            text: "Non-Infectious Disease"
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'ncd'
+        Button:
+            text: "Pharmaceuticals"
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'drugs'
+        #Button:
+            #text: "Medical Procedures"
+        Button:
+            text: "Cancer"
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'cancer'
+
+        #Button:
+            #text: "Finance"
+        #Button:
+            #text: "Disaster"
+            #text: "Test"
+            #on_release:
+                #root.manager.transition.direction = 'left'
+                #root.manager.current = 'final_screen'
+                #root.manager.current = 'final_screen'
+        Button:
+            text: "Cause of Death"
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'cod'
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        Button:
+            text: 'Home'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'branch'
+
+<INPUTDATA>:
+    age_input: age_input
+    state_spinner: state_spinner
+    box_male: box_male
+    box_female: box_female
+
+    CustomWidget:
+        size_hint: [.5,.5]
+        Label:
+            text: "State:"
+            halign: 'left'
+            pos: 10,500
+            size: 100, 30
+        Spinner:
+            id: state_spinner
+            size: 100, 30
+            pos: 200, 500
+            text: 'Select'
+            values: root.display_state()
+        Label:
+            text: "Year Born:"
+            halign: 'left'
+            pos: 10,400
+            size: 100, 30
+        TextInput:
+            multiline: False
+            input_type: 'number'
+            id: age_input
+            pos: 200,400
+            size: 100, 30
+
+        GridLayout:
+            cols: 3
+            row_force_default: True
+            row_default_height: 50
+            pos_hint: {'center_x':0, 'center_y':.8}
+            size_hint: (None, .3)
+            # size is updated whenever minimum_size is.
+            size: self.minimum_size
+            # top is updated whenever height is.
+            top: self.height + 180
+            Label:
+                text: "Gender:"
+                size_hint_x: None
+                width: 150
+                halign: 'left'
+            Label:
+                text: 'Male'
+                size_hint_x: None
+                width: 100
+                halign: 'left'
+            CheckBox:
+                id: box_male
+                active: True
+                color: .294, .761, .623
+                group: 'g2'
+                size_hint_x: None
+                width: 50
+            Label:
+                text: ''
+                size_hint_x: None
+                width: 150
+            Label:
+                text: 'Female'
+                size_hint_x: None
+                width: 100
+                halign: 'left'
+            CheckBox:
+                id: box_female
+                active: True
+                color: .294, .761, .623
+                group: 'g2'
+                size_hint_x: None
+                width: 50
+            Label:
+                text: ''
+                size_hint_x: None
+                width: 150
+            Label:
+                text: 'Other'
+                size_hint_x: None
+                width: 100
+                halign: 'left'
+            CheckBox:
+                id: box_other
+                active: True
+                color: .294, .761, .623
+                group: 'g2'
+                size_hint_x: None
+                width: 50
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        Button:
+            text: 'Home'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'branch'
+        Button:
+            text: 'Continue'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'screen1'
+            #on_press: root.send_data()
+            on_press: root.send_data()
+
+
+<INJURY>:
+    on_pre_enter: root.default()
+    choking: choking
+    falls: falls
+    motor: motor
+    poison: poison
+
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: [.05, .05, .05, .05]
+        Label:
+            size_hint: .9, .1
+            font_size: 22
+            text: 'Lifetime Risk of Injury (Death)'
+            color: 1, 1, 1, 1
+
+    BoxLayout:
+        size_hint: (.8, .8)
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        ScrollView:
+            size: 800, 800
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            do_scroll_x: False
+
+            GridLayout:
+                cols: 2
+                padding_horizontal: 10
+                padding_vertical: 5
+                spacing: 20
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 20
+                size_hint_y: None
+                Label:
+                    size: self.texture_size
+                    size_hint_x: .4
+                    font_size: 12
+                    text: 'Motor Vehicle: {}%'.format(motor.value)
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: motor
+                    size_hint_x: .9
+                    height: '48dp'
+                    max: 100
+                Label:
+                    size: self.texture_size
+                    size_hint_x: .4
+                    font_size: 12
+                    text: 'Firearm: {}%'.format(float(firearm.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: firearm
+                    size_hint_x: .9
+                    height: '48dp'
+                    max: 100
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Poison/Overdose: {}%'.format(float(poison.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: poison
+                    size_hint_x: .9
+                    height: '48dp'
+                    max: 100
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Falls: {}%'.format(float(falls.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: falls
+                    size_hint_x: .9
+                    height: '48dp'
+                    max: 100
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Occupation: {}%'.format(float(occ.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: occ
+                    size_hint_x: .9
+                    height: '48dp'
+                    max: 100
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Choking: {}%'.format(float(choking.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: choking
+                    size_hint_x: .9
+                    height: '48dp'
+                    max: 100
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Fire/Smoke: {}%'.format(float(fire.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: fire
+                    size_hint_x: .9
+                    height: '48dp'
+                    max: 100
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Drowning: {}%'.format(float(drown.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: drown
+                    size_hint_x: .9
+                    height: '48dp'
+                    max: 100
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Heat/Cold: {}%'.format(float(heat.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: heat
+                    size_hint_x: .9
+                    height: '48dp'
+                    max: 100
+                Label:
+                    size: self.texture_size
+                    font_size: 12
+                    text: 'Blunt Force: {}%'.format(float(blunt.value))
+                    color: 1, 1, 1, 1
+                ProgressBar:
+                    id: blunt
+                    size_hint_x: .9
+                    height: '48dp'
+                    max: 100
+
+
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        ToggleButton:
+            text: 'Average'
+            id: injuryavg
+            group: 'injury'
+            state: 'down'
+            allow_no_selection: False
+            on_press: root.default();
+        ToggleButton:
+            text: 'Me'
+            id: injurycustom
+            group: 'injury'
+            state: 'normal'
+            allow_no_selection: False
+            on_press: root.update();
+        Button:
+            text: 'GRID'
+            size_hint_x: .2
+            on_release:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'screen1'
+                #on_press: root.clear_val()
+
+<CANCER>:
+    title: title
+    on_pre_enter:
+        root.version = 0;
+        root.customflag = 0;
+        CancerWidget.update(root.version, root.customflag);
+
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: [.05, .05, .05, .05]
+        Label:
+            id:title
+            size_hint: .9, .1
+            font_size: 22
+            text: 'Lifetime Risk of Cancer (Death)'
+            color: 1, 1, 1, 1
+
+    CancerWidget:
+        self:self
+        pb: pb
+        lb: lb
+        pb1: pb1
+        lb1: lb1
+        pb1: pb1
+        lb1: lb1
+        pb2: pb2
+        lb2: lb2
+        pb3: pb3
+        lb3: lb3
+        pb4: pb4
+        lb4: lb4
+        pb5: pb5
+        lb5: lb5
+        pb6: pb6
+        lb6: lb6
+        pb7: pb7
+        lb7: lb7
+        pb8: pb8
+        lb8: lb8
+        pb9: pb9
+        lb9: lb9
+        pb10: pb10
+        lb10: lb10
+        pb11: pb11
+        lb11: lb11
+        pb12: pb12
+        lb12: lb12
+        pb13: pb13
+        lb13: lb13
+        pb14: pb14
+        lb14: lb14
+        pb15: pb15
+        lb15: lb15
+        pb16: pb16
+        lb16: lb16
+        lb17: lb17
+        pb17: pb17
+        lb18: lb18
+        pb18: pb18
+        lb19: lb19
+        pb19: pb19
+        lb20: lb20
+        pb20: pb20
+        lb21: lb21
+        pb21: pb21
+        lb22: lb22
+        pb22: pb22
+        lb23: lb23
+        pb23: pb23
+        lb24: lb24
+        pb24: pb24
+        lb25: lb25
+        pb25: pb25
+        lb26: lb26
+        pb26: pb26
+        lb27: lb27
+        pb27: pb27
+
+        id: CancerWidget
+        size_hint: (.8,.8)
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        ScrollView:
+            size: 800, 800
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            do_scroll_x: False
+
+            GridLayout:
+                cols: 2
+                padding_horizontal: 10
+                padding_vertical: 5
+                spacing: 20
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 20
+                size_hint_y: None
+    #######manual entry#############
+                CustLabel:
+                    id: lb
+                CustPBar:
+                    id: pb
+                CustLabel:
+                    id: lb1
+                CustPBar:
+                    id: pb1
+                CustLabel:
+                    id: lb2
+                CustPBar:
+                    id: pb2
+                CustLabel:
+                    id:lb3
+                CustPBar:
+                    id: pb3
+                CustLabel:
+                    id: lb4
+                CustPBar:
+                    id: pb4
+                CustLabel:
+                    id:lb5
+                CustPBar:
+                    id: pb5
+                CustLabel:
+                    id: lb6
+                CustPBar:
+                    id: pb6
+                CustLabel:
+                    id:lb7
+                CustPBar:
+                    id:pb7
+                CustLabel:
+                    id:lb8
+                CustPBar:
+                    id:pb8
+                CustLabel:
+                    id:lb9
+                CustPBar:
+                    id:pb9
+                CustLabel:
+                    id:lb10
+                CustPBar:
+                    id:pb10
+                CustLabel:
+                    id:lb11
+                CustPBar:
+                    id:pb11
+                CustLabel:
+                    id:lb12
+                CustPBar:
+                    id:pb12
+                CustLabel:
+                    id:lb13
+                CustPBar:
+                    id:pb13
+                CustLabel:
+                    id:lb14
+                CustPBar:
+                    id:pb14
+                CustLabel:
+                    id:lb15
+                CustPBar:
+                    id:pb15
+                CustLabel:
+                    id:lb16
+                CustPBar:
+                    id:pb16
+                CustLabel:
+                    id:lb17
+                CustPBar:
+                    id:pb17
+                CustLabel:
+                    id:lb18
+                CustPBar:
+                    id:pb18
+                CustLabel:
+                    id:lb19
+                CustPBar:
+                    id:pb19
+                CustLabel:
+                    id:lb20
+                CustPBar:
+                    id:pb20
+                CustLabel:
+                    id:lb21
+                CustPBar:
+                    id:pb21
+                CustLabel:
+                    id:lb22
+                CustPBar:
+                    id:pb22
+                CustLabel:
+                    id:lb23
+                CustPBar:
+                    id:pb23
+                CustLabel:
+                    id:lb24
+                CustPBar:
+                    id:pb24
+                CustLabel:
+                    id:lb25
+                CustPBar:
+                    id:pb25
+                CustLabel:
+                    id:lb26
+                CustPBar:
+                    id:pb26
+                CustLabel:
+                    id:lb27
+                CustPBar:
+                    id:pb27
+
+###########################################################
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        ToggleButton:
+            id: canceravg
+            text: 'Average'
+            size_hint_x: .2
+            group: 'cancercalc'
+            state: 'down'
+            allow_no_selection: False
+            on_press:
+                root.customflag = 0;
+                CancerWidget.update(root.version, root.customflag);
+
+
+
+        ToggleButton:
+            id: cancercalc
+            text: 'Custom'
+            size_hint_x: .2
+            group: 'cancercalc'
+            state: 'normal'
+            allow_no_selection: False
+            on_press:
+                root.customflag = 1;
+                CancerWidget.update(root.version, root.customflag);
+
+
+        ToggleButton:
+            id: cancerdeath
+            text: 'Death'
+            size_hint_x: .2
+            group: 'cancervers'
+            state: 'down'
+            allow_no_selection: False
+            on_press:
+                root.version = 0;
+                CancerWidget.update(root.version, root.customflag);
+                root.title.text = "Lifetime Risk of Cancer (Death)"
+
+        ToggleButton:
+            id: cancerdiag
+            text: 'Diagnosis'
+            size_hint_x: .2
+            group: 'cancervers'
+            state: 'normal'
+            allow_no_selection: False
+            on_press:
+                root.version = 1;
+                CancerWidget.update(root.version, root.customflag);
+                root.title.text = "Lifetime Risk of Cancer (Diagnosis)"
+
+        Button:
+            text: 'GRID'
+            size_hint_x: .1
+            on_release:
+                root.manager.current = 'screen1'
+
+
+##################################
+
+<DISEASE>:
+    on_pre_enter:
+        root.customflag = 0;
+        DiseaseWidget.update(root.customflag);
+
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: [.05, .05, .05, .05]
+        Label:
+            size_hint: .9, .1
+            font_size: 22
+            text: 'Lifetime Risk of Infectious Disease (Diagnosis)'
+            color: 1, 1, 1, 1
+
+    DiseaseWidget:
+        self: self
+        pb: pb
+        lb: lb
+        pb1: pb1
+        lb1: lb1
+        pb1: pb1
+        lb1: lb1
+        pb2: pb2
+        lb2: lb2
+        pb3: pb3
+        lb3: lb3
+        pb4: pb4
+        lb4: lb4
+        pb5: pb5
+        lb5: lb5
+        pb6: pb6
+        lb6: lb6
+        pb7: pb7
+        lb7: lb7
+        pb8: pb8
+        lb8: lb8
+        pb9: pb9
+        lb9: lb9
+        pb10: pb10
+        lb10: lb10
+        pb11: pb11
+        lb11: lb11
+        pb12: pb12
+        lb12: lb12
+        pb13: pb13
+        lb13: lb13
+        pb14: pb14
+        lb14: lb14
+        pb15: pb15
+        lb15: lb15
+        pb16: pb16
+        lb16: lb16
+        lb17: lb17
+        pb17: pb17
+        lb18: lb18
+        pb18: pb18
+        lb19: lb19
+        pb19: pb19
+        lb20: lb20
+        pb20: pb20
+        lb21: lb21
+        pb21: pb21
+        lb22: lb22
+        pb22: pb22
+        lb23: lb23
+        pb23: pb23
+        lb24: lb24
+        pb24: pb24
+        lb25: lb25
+        pb25: pb25
+        lb26: lb26
+        pb26: pb26
+        lb27: lb27
+        pb27: pb27
+        lb28: lb28
+        pb28: pb28
+        lb29: lb29
+        pb29: pb29
+        lb30: lb30
+        pb30: pb30
+        lb31: lb31
+        pb31: pb31
+        lb32: lb32
+        pb32: pb32
+        lb33: lb33
+        pb33: pb33
+        lb34: lb34
+        pb34: pb34
+        lb35: lb35
+        pb35: pb35
+        lb36: lb36
+        pb36: pb36
+
+        id: DiseaseWidget
+        size_hint: (.8,.78)
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        ScrollView:
+            size: 800, 800
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            do_scroll_x: False
+
+            GridLayout:
+                cols: 2
+                padding_horizontal: 10
+                padding_vertical: 5
+                spacing: 20
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 20
+                size_hint_y: None
+    #######manual entry#############
+                CustLabel:
+                    id: lb
+                CustPBar:
+                    id: pb
+                CustLabel:
+                    id: lb1
+                CustPBar:
+                    id: pb1
+                CustLabel:
+                    id: lb2
+                CustPBar:
+                    id: pb2
+                CustLabel:
+                    id:lb3
+                CustPBar:
+                    id: pb3
+                CustLabel:
+                    id: lb4
+                CustPBar:
+                    id: pb4
+                CustLabel:
+                    id:lb5
+                CustPBar:
+                    id: pb5
+                CustLabel:
+                    id: lb6
+                CustPBar:
+                    id: pb6
+                CustLabel:
+                    id:lb7
+                CustPBar:
+                    id:pb7
+                CustLabel:
+                    id:lb8
+                CustPBar:
+                    id:pb8
+                CustLabel:
+                    id:lb9
+                CustPBar:
+                    id:pb9
+                CustLabel:
+                    id:lb10
+                CustPBar:
+                    id:pb10
+                CustLabel:
+                    id:lb11
+                CustPBar:
+                    id:pb11
+                CustLabel:
+                    id:lb12
+                CustPBar:
+                    id:pb12
+                CustLabel:
+                    id:lb13
+                CustPBar:
+                    id:pb13
+                CustLabel:
+                    id:lb14
+                CustPBar:
+                    id:pb14
+                CustLabel:
+                    id:lb15
+                CustPBar:
+                    id:pb15
+                CustLabel:
+                    id:lb16
+                CustPBar:
+                    id:pb16
+                CustLabel:
+                    id:lb17
+                CustPBar:
+                    id:pb17
+                CustLabel:
+                    id:lb18
+                CustPBar:
+                    id:pb18
+                CustLabel:
+                    id:lb19
+                CustPBar:
+                    id:pb19
+                CustLabel:
+                    id:lb20
+                CustPBar:
+                    id:pb20
+                CustLabel:
+                    id:lb21
+                CustPBar:
+                    id:pb21
+                CustLabel:
+                    id:lb22
+                CustPBar:
+                    id:pb22
+                CustLabel:
+                    id:lb23
+                CustPBar:
+                    id:pb23
+                CustLabel:
+                    id:lb24
+                CustPBar:
+                    id:pb24
+                CustLabel:
+                    id:lb25
+                CustPBar:
+                    id:pb25
+                CustLabel:
+                    id:lb26
+                CustPBar:
+                    id:pb26
+                CustLabel:
+                    id:lb27
+                CustPBar:
+                    id:pb27
+                CustLabel:
+                    id:lb28
+                CustPBar:
+                    id:pb28
+                CustLabel:
+                    id:lb29
+                CustPBar:
+                    id:pb29
+                CustLabel:
+                    id:lb30
+                CustPBar:
+                    id:pb30
+                CustLabel:
+                    id:lb31
+                CustPBar:
+                    id:pb31
+                CustLabel:
+                    id:lb32
+                CustPBar:
+                    id:pb32
+                CustLabel:
+                    id:lb33
+                CustPBar:
+                    id:pb33
+                CustLabel:
+                    id:lb34
+                CustPBar:
+                    id:pb34
+                CustLabel:
+                    id:lb35
+                CustPBar:
+                    id:pb35
+                CustLabel:
+                    id:lb36
+                CustPBar:
+                    id:pb36
+
+
+###########################################################
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        ToggleButton:
+            id: diseaseavg
+            text: 'Average'
+            group: 'diseasecalc'
+            state: 'down'
+            allow_no_selection: False
+            on_press:
+                root.customflag = 0;
+                DiseaseWidget.update(root.customflag);
+
+        ToggleButton:
+            id: diseasecalc
+            text: 'Custom'
+            group: 'diseasecalc'
+            state: 'normal'
+            allow_no_selection: False
+            on_press:
+                root.customflag = 1;
+                DiseaseWidget.update(root.customflag);
+
+        Button:
+            text: 'GRID'
+            size_hint_x: .2
+            on_release:
+                root.manager.current = 'screen1'
+
+
+<NCD>:
+    on_pre_enter:
+        root.customflag = 0;
+        NCDWidget.update(root.customflag);
+
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: [.05, .05, .05, .05]
+        Label:
+            size_hint: .9, .1
+            font_size: 22
+            text: 'Lifetime Risk of Non-Communicable Disease (Diagnosis)'
+            color: 1, 1, 1, 1
+
+    NCDWidget:
+        self: self
+        pb: pb
+        lb: lb
+        pb1: pb1
+        lb1: lb1
+        pb1: pb1
+        lb1: lb1
+        pb2: pb2
+        lb2: lb2
+        pb3: pb3
+        lb3: lb3
+        pb4: pb4
+        lb4: lb4
+        pb5: pb5
+        lb5: lb5
+        pb6: pb6
+        lb6: lb6
+        pb7: pb7
+        lb7: lb7
+        pb8: pb8
+        lb8: lb8
+        pb9: pb9
+        lb9: lb9
+        pb10: pb10
+        lb10: lb10
+        pb11: pb11
+        lb11: lb11
+        pb12: pb12
+        lb12: lb12
+        pb13: pb13
+        lb13: lb13
+        pb14: pb14
+        lb14: lb14
+        pb15: pb15
+        lb15: lb15
+        pb16: pb16
+        lb16: lb16
+        lb17: lb17
+        pb17: pb17
+        lb18: lb18
+        pb18: pb18
+        lb19: lb19
+        pb19: pb19
+        lb20: lb20
+        pb20: pb20
+        lb21: lb21
+        pb21: pb21
+        lb22: lb22
+        pb22: pb22
+        lb23: lb23
+        pb23: pb23
+        lb24: lb24
+        pb24: pb24
+        lb25: lb25
+        pb25: pb25
+        lb26: lb26
+        pb26: pb26
+        lb27: lb27
+        pb27: pb27
+        lb28: lb28
+        pb28: pb28
+        lb29: lb29
+        pb29: pb29
+        lb30: lb30
+        pb30: pb30
+        lb31: lb31
+        pb31: pb31
+        lb32: lb32
+        pb32: pb32
+
+
+        id: NCDWidget
+        size_hint: (.8,.78)
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        ScrollView:
+            size: 800, 800
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            do_scroll_x: False
+
+            GridLayout:
+                cols: 2
+                padding_horizontal: 10
+                padding_vertical: 5
+                spacing: 20
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 20
+                size_hint_y: None
+    #######manual entry#############
+                CustLabel:
+                    id: lb
+                CustPBar:
+                    id: pb
+                CustLabel:
+                    id: lb1
+                CustPBar:
+                    id: pb1
+                CustLabel:
+                    id: lb2
+                CustPBar:
+                    id: pb2
+                CustLabel:
+                    id:lb3
+                CustPBar:
+                    id: pb3
+                CustLabel:
+                    id: lb4
+                CustPBar:
+                    id: pb4
+                CustLabel:
+                    id:lb5
+                CustPBar:
+                    id: pb5
+                CustLabel:
+                    id: lb6
+                CustPBar:
+                    id: pb6
+                CustLabel:
+                    id:lb7
+                CustPBar:
+                    id:pb7
+                CustLabel:
+                    id:lb8
+                CustPBar:
+                    id:pb8
+                CustLabel:
+                    id:lb9
+                CustPBar:
+                    id:pb9
+                CustLabel:
+                    id:lb10
+                CustPBar:
+                    id:pb10
+                CustLabel:
+                    id:lb11
+                CustPBar:
+                    id:pb11
+                CustLabel:
+                    id:lb12
+                CustPBar:
+                    id:pb12
+                CustLabel:
+                    id:lb13
+                CustPBar:
+                    id:pb13
+                CustLabel:
+                    id:lb14
+                CustPBar:
+                    id:pb14
+                CustLabel:
+                    id:lb15
+                CustPBar:
+                    id:pb15
+                CustLabel:
+                    id:lb16
+                CustPBar:
+                    id:pb16
+                CustLabel:
+                    id:lb17
+                CustPBar:
+                    id:pb17
+                CustLabel:
+                    id:lb18
+                CustPBar:
+                    id:pb18
+                CustLabel:
+                    id:lb19
+                CustPBar:
+                    id:pb19
+                CustLabel:
+                    id:lb20
+                CustPBar:
+                    id:pb20
+                CustLabel:
+                    id:lb21
+                CustPBar:
+                    id:pb21
+                CustLabel:
+                    id:lb22
+                CustPBar:
+                    id:pb22
+                CustLabel:
+                    id:lb23
+                CustPBar:
+                    id:pb23
+                CustLabel:
+                    id:lb24
+                CustPBar:
+                    id:pb24
+                CustLabel:
+                    id:lb25
+                CustPBar:
+                    id:pb25
+                CustLabel:
+                    id:lb26
+                CustPBar:
+                    id:pb26
+                CustLabel:
+                    id:lb27
+                CustPBar:
+                    id:pb27
+                CustLabel:
+                    id:lb28
+                CustPBar:
+                    id:pb28
+                CustLabel:
+                    id:lb29
+                CustPBar:
+                    id:pb29
+                CustLabel:
+                    id:lb30
+                CustPBar:
+                    id:pb30
+                CustLabel:
+                    id:lb31
+                CustPBar:
+                    id:pb31
+                CustLabel:
+                    id:lb32
+                CustPBar:
+                    id:pb32
+
+
+###########################################################
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        ToggleButton:
+            id: ncdavg
+            text: 'Average'
+            group: 'ncdcalc'
+            state: 'down'
+            allow_no_selection: False
+            on_press:
+                root.customflag = 0;
+                NCDWidget.update(root.customflag);
+
+        ToggleButton:
+            id: ncdcalc
+            text: 'Custom'
+            group: 'ncdcalc'
+            state: 'normal'
+            allow_no_selection: False
+            on_press:
+                root.customflag = 1;
+                NCDWidget.update(root.customflag);
+
+        Button:
+            text: 'GRID'
+            size_hint_x: .2
+            on_release:
+                root.manager.current = 'screen1'
+###################################
+
+<DRUGS>:
+    on_pre_enter:
+        DRUGSWidget.update();
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: [.05, .05, .05, .05]
+        Label:
+            size_hint: .9, .1
+            font_size: 22
+            text: 'Increased Risk of Hospitalization from Common Drugs'
+            color: 1, 1, 1, 1
+
+    DRUGSWidget:
+        self: self
+        pb: pb
+        lb: lb
+        pb1: pb1
+        lb1: lb1
+        pb1: pb1
+        lb1: lb1
+        pb2: pb2
+        lb2: lb2
+        pb3: pb3
+        lb3: lb3
+        pb4: pb4
+        lb4: lb4
+        pb5: pb5
+        lb5: lb5
+        pb6: pb6
+        lb6: lb6
+        pb7: pb7
+        lb7: lb7
+        pb8: pb8
+        lb8: lb8
+        pb9: pb9
+        lb9: lb9
+        pb10: pb10
+        lb10: lb10
+        pb11: pb11
+        lb11: lb11
+        pb12: pb12
+        lb12: lb12
+        pb13: pb13
+        lb13: lb13
+        pb14: pb14
+        lb14: lb14
+        pb15: pb15
+        lb15: lb15
+        pb16: pb16
+        lb16: lb16
+        lb17: lb17
+        pb17: pb17
+        lb18: lb18
+        pb18: pb18
+        lb19: lb19
+        pb19: pb19
+        lb20: lb20
+        pb20: pb20
+        lb21: lb21
+        pb21: pb21
+        lb22: lb22
+        pb22: pb22
+        lb23: lb23
+        pb23: pb23
+        lb24: lb24
+        pb24: pb24
+        lb25: lb25
+        pb25: pb25
+        lb26: lb26
+        pb26: pb26
+        lb27: lb27
+        pb27: pb27
+        lb28: lb28
+        pb28: pb28
+        lb29: lb29
+        pb29: pb29
+        lb30: lb30
+        pb30: pb30
+        lb31: lb31
+        pb31: pb31
+        lb32: lb32
+        pb32: pb32
+        lb33: lb33
+        pb33: pb33
+        lb34: lb34
+        pb34: pb34
+        lb35: lb35
+        pb35: pb35
+        lb36: lb36
+        pb36: pb36
+        lb37: lb37
+        pb37: pb37
+
+
+        id: DRUGSWidget
+        size_hint: (.8,.78)
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        ScrollView:
+            size: 800, 800
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            do_scroll_x: False
+
+            GridLayout:
+                id: drugsgrid
+                cols: 2
+                padding_horizontal: 10
+                padding_vertical: 5
+                spacing: 20
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 20
+                size_hint_y: None
+    #######manual entry#############
+                CustLabel:
+                    id: lb
+                CustPBar:
+                    id: pb
+                    max: 500
+                CustLabel:
+                    id: lb1
+                CustPBar:
+                    id: pb1
+                    max: 500
+                CustLabel:
+                    id: lb2
+                CustPBar:
+                    id: pb2
+                    max: 500
+                CustLabel:
+                    id:lb3
+                CustPBar:
+                    id: pb3
+                    max: 500
+                CustLabel:
+                    id: lb4
+                CustPBar:
+                    id: pb4
+                    max: 500
+                CustLabel:
+                    id:lb5
+                CustPBar:
+                    id: pb5
+                    max: 500
+                CustLabel:
+                    id: lb6
+                CustPBar:
+                    id: pb6
+                    max: 500
+                CustLabel:
+                    id:lb7
+                CustPBar:
+                    id:pb7
+                    max: 500
+                CustLabel:
+                    id:lb8
+                CustPBar:
+                    id:pb8
+                    max: 500
+                CustLabel:
+                    id:lb9
+                CustPBar:
+                    id:pb9
+                    max: 500
+                CustLabel:
+                    id:lb10
+                CustPBar:
+                    id:pb10
+                    max: 500
+                CustLabel:
+                    id:lb11
+                CustPBar:
+                    id:pb11
+                    max: 500
+                CustLabel:
+                    id:lb12
+                CustPBar:
+                    id:pb12
+                    max: 500
+                CustLabel:
+                    id:lb13
+                CustPBar:
+                    id:pb13
+                    max: 500
+                CustLabel:
+                    id:lb14
+                CustPBar:
+                    id:pb14
+                    max: 500
+                CustLabel:
+                    id:lb15
+                CustPBar:
+                    id:pb15
+                    max: 500
+                CustLabel:
+                    id:lb16
+                CustPBar:
+                    id:pb16
+                    max: 500
+                CustLabel:
+                    id:lb17
+                CustPBar:
+                    id:pb17
+                    max: 500
+                CustLabel:
+                    id:lb18
+                CustPBar:
+                    id:pb18
+                    max: 500
+                CustLabel:
+                    id:lb19
+                CustPBar:
+                    id:pb19
+                    max: 500
+                CustLabel:
+                    id:lb20
+                CustPBar:
+                    id:pb20
+                    max: 500
+                CustLabel:
+                    id:lb21
+                CustPBar:
+                    id:pb21
+                    max: 500
+                CustLabel:
+                    id:lb22
+                CustPBar:
+                    id:pb22
+                    max: 500
+                CustLabel:
+                    id:lb23
+                CustPBar:
+                    id:pb23
+                    max: 500
+                CustLabel:
+                    id:lb24
+                CustPBar:
+                    id:pb24
+                    max: 500
+                CustLabel:
+                    id:lb25
+                CustPBar:
+                    id:pb25
+                    max: 500
+                CustLabel:
+                    id:lb26
+                CustPBar:
+                    id:pb26
+                    max: 500
+                CustLabel:
+                    id:lb27
+                CustPBar:
+                    id:pb27
+                    max: 500
+                CustLabel:
+                    id:lb28
+                CustPBar:
+                    id:pb28
+                    max: 500
+                CustLabel:
+                    id:lb29
+                CustPBar:
+                    id:pb29
+                    max: 500
+                CustLabel:
+                    id:lb30
+                CustPBar:
+                    id:pb30
+                    max: 500
+                CustLabel:
+                    id:lb31
+                CustPBar:
+                    id:pb31
+                    max: 500
+                CustLabel:
+                    id:lb32
+                CustPBar:
+                    id:pb32
+                    max: 500
+                CustLabel:
+                    id:lb33
+                CustPBar:
+                    id:pb33
+                    max: 500
+                CustLabel:
+                    id:lb34
+                CustPBar:
+                    id:pb34
+                    max: 500
+                CustLabel:
+                    id:lb35
+                CustPBar:
+                    id:pb35
+                    max: 500
+                CustLabel:
+                    id:lb36
+                CustPBar:
+                    id:pb36
+                    max: 500
+                CustLabel:
+                    id:lb37
+                CustPBar:
+                    id:pb37
+                    max: 500
+
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        ToggleButton:
+            id: drugsavg
+            text: 'Average'
+            group: 'codcalc'
+            state: 'down'
+            allow_no_selection: False
+
+        Button:
+            text: 'GRID'
+            size_hint_x: .2
+            on_release:
+                root.manager.current = 'screen1'
+
+###################################
+
+<COD>:
+    on_pre_enter:
+        root.customflag = 0;
+        CODWidget.update(root.customflag);
+
+    AnchorLayout:
+        anchor_y: 'top'
+        padding: [.05, .05, .05, .05]
+        Label:
+            size_hint: .9, .1
+            font_size: 22
+            text: 'Incidence Risk of Death by Cause'
+            color: 1, 1, 1, 1
+
+    CODWidget:
+        self: self
+        codgrid: codgrid
+        pb: pb
+        lb: lb
+        pb1: pb1
+        lb1: lb1
+        pb1: pb1
+        lb1: lb1
+        pb2: pb2
+        lb2: lb2
+        pb3: pb3
+        lb3: lb3
+        pb4: pb4
+        lb4: lb4
+        pb5: pb5
+        lb5: lb5
+        pb6: pb6
+        lb6: lb6
+        pb7: pb7
+        lb7: lb7
+        pb8: pb8
+        lb8: lb8
+        pb9: pb9
+        lb9: lb9
+        pb10: pb10
+        lb10: lb10
+        pb11: pb11
+        lb11: lb11
+        pb12: pb12
+        lb12: lb12
+        pb13: pb13
+        lb13: lb13
+        pb14: pb14
+        lb14: lb14
+        pb15: pb15
+        lb15: lb15
+        pb16: pb16
+        lb16: lb16
+        lb17: lb17
+        pb17: pb17
+        lb18: lb18
+        pb18: pb18
+        lb19: lb19
+        pb19: pb19
+        #lb20: lb20
+        #pb20: pb20
+        # lb21: lb21
+        # pb21: pb21
+        # lb22: lb22
+        # pb22: pb22
+        # lb23: lb23
+        # pb23: pb23
+        # lb24: lb24
+        # pb24: pb24
+        # lb25: lb25
+        # pb25: pb25
+        # lb26: lb26
+        # pb26: pb26
+        # lb27: lb27
+        # pb27: pb27
+        # lb28: lb28
+        # pb28: pb28
+        # lb29: lb29
+        # pb29: pb29
+        # lb30: lb30
+        # pb30: pb30
+        # lb31: lb31
+        # pb31: pb31
+        # lb32: lb32
+        # pb32: pb32
+
+
+        id: CODWidget
+        size_hint: (.8,.78)
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        ScrollView:
+            size: 800, 800
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            do_scroll_x: False
+
+            GridLayout:
+                id: codgrid
+                cols: 2
+                padding_horizontal: 10
+                padding_vertical: 5
+                spacing: 20
+                height: self.minimum_height
+                row_force_default: True
+                row_default_height: 20
+                size_hint_y: None
+    #######manual entry#############
+                CustLabel:
+                    id: lb
+                CustPBar:
+                    id: pb
+                CustLabel:
+                    id: lb1
+                CustPBar:
+                    id: pb1
+                CustLabel:
+                    id: lb2
+                CustPBar:
+                    id: pb2
+                CustLabel:
+                    id:lb3
+                CustPBar:
+                    id: pb3
+                CustLabel:
+                    id: lb4
+                CustPBar:
+                    id: pb4
+                CustLabel:
+                    id:lb5
+                CustPBar:
+                    id: pb5
+                CustLabel:
+                    id: lb6
+                CustPBar:
+                    id: pb6
+                CustLabel:
+                    id:lb7
+                CustPBar:
+                    id:pb7
+                CustLabel:
+                    id:lb8
+                CustPBar:
+                    id:pb8
+                CustLabel:
+                    id:lb9
+                CustPBar:
+                    id:pb9
+                CustLabel:
+                    id:lb10
+                CustPBar:
+                    id:pb10
+                CustLabel:
+                    id:lb11
+                CustPBar:
+                    id:pb11
+                CustLabel:
+                    id:lb12
+                CustPBar:
+                    id:pb12
+                CustLabel:
+                    id:lb13
+                CustPBar:
+                    id:pb13
+                CustLabel:
+                    id:lb14
+                CustPBar:
+                    id:pb14
+                CustLabel:
+                    id:lb15
+                CustPBar:
+                    id:pb15
+                CustLabel:
+                    id:lb16
+                CustPBar:
+                    id:pb16
+                CustLabel:
+                    id:lb17
+                CustPBar:
+                    id:pb17
+                CustLabel:
+                    id:lb18
+                CustPBar:
+                    id:pb18
+                CustLabel:
+                    id:lb19
+                CustPBar:
+                    id:pb19
+                #CustLabel:
+                #    id:lb20
+                #CustPBar:
+                #    id:pb20
+                # CustLabel:
+                #     id:lb21
+                # CustPBar:
+                #     id:pb21
+                # CustLabel:
+                #     id:lb22
+                # CustPBar:
+                #     id:pb22
+                # CustLabel:
+                #     id:lb23
+                # CustPBar:
+                #     id:pb23
+                # CustLabel:
+                #     id:lb24
+                # CustPBar:
+                #     id:pb24
+                # CustLabel:
+                #     id:lb25
+                # CustPBar:
+                #     id:pb25
+                # CustLabel:
+                #     id:lb26
+                # CustPBar:
+                #     id:pb26
+                # CustLabel:
+                #     id:lb27
+                # CustPBar:
+                #     id:pb27
+                # CustLabel:
+                #     id:lb28
+                # CustPBar:
+                #     id:pb28
+                # CustLabel:
+                #     id:lb29
+                # CustPBar:
+                #     id:pb29
+                # CustLabel:
+                #     id:lb30
+                # CustPBar:
+                #     id:pb30
+                # CustLabel:
+                #     id:lb31
+                # CustPBar:
+                #     id:pb31
+                # CustLabel:
+                #     id:lb32
+                # CustPBar:
+                #     id:pb32
+
+
+###########################################################
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        ToggleButton:
+            id: codavg
+            text: 'Average'
+            group: 'codcalc'
+            state: 'down'
+            allow_no_selection: False
+            on_press:
+                root.customflag = 0;
+                CODWidget.update(root.customflag);
+
+        ToggleButton:
+            id: codcalc
+            text: 'Custom'
+            group: 'codcalc'
+            state: 'normal'
+            allow_no_selection: False
+            on_press:
+                root.customflag = 1;
+                CODWidget.update(root.customflag);
+
+        Button:
+            text: 'GRID'
+            #size_x: 100
+            size_hint_x: .2
+            on_release:
+                root.manager.current = 'screen1'
+
+##################################
+<CustLabel@Label>
+    size: self.texture_size
+    font_size: 12
+    color: 1,1,1,1
+
+<CustPBar@ProgressBar>
+    size_hint_x: .9
+    height: '48dp'
+    max: 100
+
+
+<FINAL_SCREEN>:
+    CancerWidget:
+        lb: lb
+        pb: pb
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            size: self.size
+
+
+            BoxLayout:
+                anchor_x: 'center'
+                anchor_y: 'center'
+                orientation: 'vertical'
+                size_hint: 1, .85
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: .01
+                    size_hint: .9, .1
+
+                    CustLabel:
+                        id: lb
+                        text: '{}: {}%'.format("Test", float(pb.value))
+
+                    CustPBar:
+                        id: pb
+                        value: 50
+
+    BoxLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        Button:
+            text: 'Default'
+            on_release:
+                on_press: root.default(); pb.value = root.pbval;
+                #on_press: root.calculate()
+        Button:
+            text: 'Calculate'
+            on_release:
+                on_press: root.update(); pb.value = root.pbval;
+                #on_press: root.calculate()
+        Button:
+            text: 'Back'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'screen1'
+                #on_press: root.clear_val()
+        ToggleButton:
+            id: toggle
+            text: 'Death'
+            group: 'version'
+            state: 'normal'
+            on_press: root.update(); pb.value = root.pbval;
+        ToggleButton:
+            id: toggle2
+            text: 'Diagnosis'
+            group: 'version'
+            state: 'down'
+            on_press: root.default(); pb.value = root.pbval;
+            #on_release:
+                #root.manager.transition.direction = 'right'
+                #root.manager.current = 'screen1'
+                #on_press: root.clear_val()
+
